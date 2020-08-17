@@ -51,8 +51,8 @@ export interface WebsiteConfig {
 const config: WebsiteConfig = {
   title: 'Violin Blog',
   description: 'Just showing my progress along the years',
-  coverImage: 'img/violin.jpg',
-  logo: 'img/violin-logo.png',
+  coverImage: '/img/violin.jpg',
+  logo: '/img/violin-logo.png',
   lang: 'en',
   siteUrl: 'https://gatsby-casper.netlify.com',
   facebook: 'https://www.facebook.com/matiasborghi',

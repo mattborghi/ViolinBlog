@@ -2,6 +2,7 @@
 const path = require('path');
 
 module.exports = {
+  pathPrefix: '/violin', // prefix name of the blog to use when building page
   siteMetadata: {
     title: 'Violin Blog',
     description: 'My Blog where I track my violin learning progress',
