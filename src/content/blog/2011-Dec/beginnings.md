@@ -4,8 +4,9 @@ title: Early attempt at playing violin
 image: ../../img/violin_post.jpg
 author: [Matias Borghi]
 date: 2011-12-12T07:03:47.149Z
-tags:
-  - Pictures
+excerpt: My first pictures with the violin.
+tags: ['Pictures','Getting Started']
+draft: false
 ---
 
 ![First](./Dec20111.jpg)
