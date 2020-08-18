@@ -6,6 +6,7 @@
   "author": "Matias Borghi <borghi.matias@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "clean": "gatsby clean",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "dev": "gatsby develop",
@@ -13,7 +14,7 @@
     "lint:fix": "eslint --fix --ext .js,.ts,.tsx .",
     "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby clean && gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
     "@emotion/core": "10.0.28",
