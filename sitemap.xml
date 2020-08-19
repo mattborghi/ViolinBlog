@@ -2,13 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>https://mattborghi.github.io/violin/violin/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/2011-Dec/beginnings/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://mattborghi.github.io/violin/violin/blog/old_practice/old_practice/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/Violin Pictures/pictures/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/classroom/classroom/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://mattborghi.github.io/violin/violin/blog/2019-08-24/2019-08-24/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://mattborghi.github.io/violin/violin/blog/2019-12-22/2019-12-22/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://mattborghi.github.io/violin/violin/blog/1st exposition/1st_exposition/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://mattborghi.github.io/violin/violin/blog/2nd exposition/2nd_exposition/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/2020-06-03/2020-06-03/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/2020-07-01/2020-07-01/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://mattborghi.github.io/violin/violin/blog/2020-06-24/2020-06-24/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://mattborghi.github.io/violin/violin/blog/quarantine/extra_videos/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/2020-07-08/2020-07-08/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/2020-07-22/2020-07-22/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/2020-07-29/2020-07-29/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -16,9 +17,10 @@
 <url> <loc>https://mattborghi.github.io/violin/violin/blog/2020-08-12/2020-08-12/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/tags/pictures/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/tags/getting-started/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://mattborghi.github.io/violin/violin/tags/practice/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/tags/exposition/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/tags/class/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://mattborghi.github.io/violin/violin/tags/extra-videos/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://mattborghi.github.io/violin/violin/tags/extra/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/author/ghost/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/author/another-author/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://mattborghi.github.io/violin/violin/author/matias-borghi/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
