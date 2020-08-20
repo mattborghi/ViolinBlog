@@ -4,8 +4,7 @@ title: Old practice videos
 image: ../../img/violin_post.jpg
 author: [Matias Borghi]
 date: 2018-07-06T07:03:47.149Z
-tags: 
-- "Practice"
+tags: ['Practice', 'Getting Started']
 ---
 
 ### Twinkle, twinkle little star
@@ -26,7 +25,7 @@ Filmed: 2018 - Aug - 21
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VotuorKTQvI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### Ode To Joy by L. van Beethoven 
+### Ode To Joy by L. van Beethoven
 
 Filmed: 2018 - Sep - 03
 
