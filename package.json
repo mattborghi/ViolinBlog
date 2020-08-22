@@ -14,7 +14,7 @@
     "lint:fix": "eslint --fix --ext .js,.ts,.tsx .",
     "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gatsby clean && gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "npm run clean && gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
     "@emotion/core": "10.0.28",

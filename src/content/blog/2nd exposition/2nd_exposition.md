@@ -29,6 +29,14 @@ tags:
 
 ----
 
+## Practicing
+
+### Petite école de la mélodie: 12 petites pièces by Charles Dancla Op. 123 N. 1 Romance
+
+Filmed: 2019 - Nov - 17
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rupT7qI6Oc0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ![Stage](./stage.jpg)
 
 ![Duo](./duo.jpg)
