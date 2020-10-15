@@ -57,42 +57,33 @@ const About: React.FC = () => (
             <PostFullContent className="post-full-content">
               <div className="post-content">
                 <h5>
-                  A starter template for Gatsby <br /> GitHub: <a href="https://github.com/scttcper/gatsby-casper">scttcper/gatsby-casper</a>
+                  Thank you for visiting my blog!
+                </h5>
+                <h5>
+                If you want to see the source code please visit the <br /> GitHub repo: <a href="https://github.com/mattborghi/violin">mattborghi/violin</a>
                 </h5>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc commodo finibus leo,
-                  non tempus magna vehicula ac. Maecenas mollis ante finibus pharetra imperdiet.
-                  Maecenas in aliquam purus. Nam et massa a nulla fermentum dapibus sit amet in
-                  neque. Ut ipsum ipsum, rhoncus a sodales pellentesque, interdum a elit. Nullam
-                  aliquam tellus nibh, eget laoreet dui aliquet non. Vestibulum malesuada ante at
-                  diam tempus, ac interdum risus scelerisque. Sed ipsum neque, vulputate porta diam
-                  eget, consequat blandit nulla. Integer volutpat velit vitae purus lacinia aliquam.
-                  Integer bibendum ipsum vitae magna pulvinar, nec vehicula dolor vulputate. Nulla
-                  eu massa id orci placerat finibus vel sit amet eros. Vestibulum quis consequat
-                  massa. Sed sagittis sollicitudin massa at commodo. Praesent diam nisi, imperdiet
-                  posuere eleifend nec, blandit ac massa.
+                  Learning an instrument is not easy and learning the violin is really complicated.
+                  It requires a lot of motivation and self-determination. In order to improve and see 
+                  real changes, you need to practice frequently and have patience.
                 </p>
                 <p>
-                  Vestibulum semper pretium ipsum nec congue. Ut ac eros nisi. Donec leo sem,
-                  aliquam mollis sapien ultrices, dapibus congue diam. Proin viverra dapibus
-                  blandit. Ut mauris tellus, tristique id felis vel, venenatis vestibulum nunc. Nam
-                  molestie pulvinar nibh, eget egestas augue. Maecenas tellus arcu, mattis ut ipsum
-                  non, sollicitudin convallis nunc. Donec nec neque tristique, aliquet lacus id,
-                  laoreet nunc. Cras dapibus nisi nulla, ullamcorper faucibus neque suscipit ac.
-                  Donec eget orci venenatis justo lobortis volutpat. Proin vel placerat nisl.
-                  Integer arcu nunc, sodales eu fringilla non, aliquam non diam. Cras placerat,
-                  massa et faucibus pretium, ante elit tincidunt tellus, tristique ultricies velit
-                  quam et massa.
+                  The main idea of writing this blog is to inspire myself and others (mainly adults like me)
+                  to keep improving or start learning this fantastic instrument.
                 </p>
                 <p>
-                  In nunc lacus, dapibus vitae lacus sit amet, efficitur iaculis neque. Suspendisse
-                  ut tellus quis leo vestibulum tincidunt. Aenean nec enim ac dolor lacinia semper.
-                  Ut sed laoreet libero. Nunc elementum sollicitudin accumsan. Nunc eu augue neque.
-                  Proin a tortor nibh. Cras eu nisl ornare sapien feugiat pellentesque. Mauris
-                  dignissim vel quam eu pellentesque. Integer sit amet posuere quam, eu ullamcorper
-                  odio. Nullam a lacus tempus sapien dignissim ullamcorper. In hac habitasse platea
-                  dictumst. Proin quis massa aliquam, feugiat tortor sit amet, tincidunt urna. Donec
-                  posuere pulvinar lectus, ac semper ipsum vulputate quis.
+                  I self-taught violin when I was around 20 years old but I was studying at uni but I failed. I didn't have much time
+                  and I didn't feel motivated enough (I had no prior musical knowledge).
+                  So, after finishing my university studies I started going to classes with a professor 
+                  (at the <a href="https://ecmusica.com.ar/" title="ECM">Creative Music School</a> in Vicente Lopez, Buenos Aires, Argentina on July 2018 at 27 years old) 
+                  and I think it was one of the best decisions I have ever made. 
+                  Although there are some times that it is difficult to have a couple of minutes to practice or even the motivation
+                  as I said before, watching the improvements over time made me enjoy more the tedious technique practice sessions
+                  even if I wanted to go to sleep or make something else.  
+                </p>
+                <p>
+                  Finally, if you feel like writing me, just do it! I will answer you as soon as I can and try to make the same as I do to 
+                  see how much you have progressed since you started learning.
                 </p>
               </div>
             </PostFullContent>
