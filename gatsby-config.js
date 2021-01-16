@@ -11,12 +11,15 @@ module.exports = {
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
   },
+  flags: {
+    DEV_SSR: false,
+  },
   plugins: [
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-sharp',
       options: {
-        quality: 100,
+        defaultQuality: 100,
         stripMetadata: true,
       },
     },
@@ -58,8 +61,8 @@ module.exports = {
         siteUrl: 'https://gatsby-casper.netlify.com',
       },
     },
-    'gatsby-plugin-emotion',
     'gatsby-plugin-typescript',
+    'gatsby-plugin-emotion',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
