@@ -137,9 +137,8 @@ const PageTemplate = ({ data, pageContext, location }: PageTemplateProps) => {
         <meta property="article:published_time" content={post.frontmatter.date} />
         {/* not sure if modified time possible */}
         {/* <meta property="article:modified_time" content="2018-08-20T15:12:00.000Z" /> */}
-        {post.frontmatter.tags && (
-          <meta property="article:tag" content={post.frontmatter.tags[0]} />
-        )}
+        {post.frontmatter.tags &&
+          post.frontmatter.tags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
 
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         {config.facebook && <meta property="article:author" content={config.facebook} />}
@@ -187,9 +186,9 @@ const PageTemplate = ({ data, pageContext, location }: PageTemplateProps) => {
               <PostFullHeader className="post-full-header">
                 <PostFullTags className="post-full-tags">
                   {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
-                    <Link to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
-                      {post.frontmatter.tags[0]}
-                    </Link>
+                    post.frontmatter.tags.map(tag => <Link key={tag} to={`/tags/${_.kebabCase(tag)}/`} style={{"marginRight": 20}}>
+                      {tag}
+                    </Link>)
                   )}
                 </PostFullTags>
                 <PostFullTitle className="post-full-title">{post.frontmatter.title}</PostFullTitle>
