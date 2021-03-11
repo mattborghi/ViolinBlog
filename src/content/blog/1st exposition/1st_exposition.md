@@ -6,6 +6,7 @@ author: [Matias Borghi]
 date: 2019-08-24T07:03:47.149Z
 tags:
   - Exposition
+  - Bartók 
 ---
 
 ## Pieces played:

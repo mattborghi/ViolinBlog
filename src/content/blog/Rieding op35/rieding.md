@@ -4,7 +4,9 @@ title: Rieding Op. 35
 image: ../../img/violin_post.jpg
 author: [Matias Borghi]
 date: 2018-08-20T07:03:47.149Z
-tags: ['Practice']
+tags: 
+    - Practice
+    - Rieding
 ---
 
 ### Concerto in B minor by Oskar Rieding Op. 35 Mov. I

@@ -6,6 +6,8 @@ author: [Matias Borghi]
 date: 2019-12-22T07:03:47.149Z
 tags:
   - Exposition
+  - Dancla
+  - Elgar
 ---
 
 ## Pieces played:

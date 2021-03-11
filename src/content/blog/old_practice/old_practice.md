@@ -4,7 +4,14 @@ title: Old practice videos
 image: ../../img/violin_post.jpg
 author: [Matias Borghi]
 date: 2018-07-06T07:03:47.149Z
-tags: ['Practice', 'Getting Started']
+tags: 
+    - Practice
+    - Getting Started
+    - Scales
+    - Beethoven
+    - Tiersen
+    - Bach
+    - Bayly
 ---
 
 ### Twinkle, twinkle little star

@@ -4,7 +4,11 @@ title: Extra videos filmed during quarantine
 image: ../../img/violin_post.jpg
 author: [Matias Borghi]
 date: 2020-07-06T07:03:47.149Z
-tags: ["Class", "Extra"]
+tags: 
+    - Class
+    - Extra
+    - Küchler
+    - Laoureux
 ---
 
 ### Küchler Opus 11, Concertino in G major, Mov. I Allegro Moderato
