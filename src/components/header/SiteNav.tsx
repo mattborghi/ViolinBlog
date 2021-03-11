@@ -8,8 +8,6 @@ import styled from '@emotion/styled';
 import { colors } from '../../styles/colors';
 import { SocialLink, SocialLinkFb } from '../../styles/shared';
 import config from '../../website-config';
-import { Facebook } from '../icons/facebook';
-import { Twitter } from '../icons/twitter';
 import { SubscribeModal } from '../subscribe/SubscribeModal';
 import { SiteNavLogo } from './SiteNavLogo';
 
@@ -112,27 +110,36 @@ class SiteNav extends React.Component<SiteNavProps, SiteNavState> {
           </SiteNavLeft>
           <SiteNavRight>
             <SocialLinks>
-              {config.facebook && (
+              {config.github && (
                 <a
                   className="social-link-fb"
                   css={[SocialLink, SocialLinkFb]}
-                  href={config.facebook}
+                  href={config.github}
                   target="_blank"
-                  title="Facebook"
+                  title="Github"
                   rel="noopener noreferrer"
                 >
-                  <Facebook />
+                  <img
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@4.13.0/icons/github.svg"
+                    width="20"
+                    height="20"
+                  />
                 </a>
               )}
-              {config.twitter && (
+              {config.linkedin && (
                 <a
                   css={SocialLink}
-                  href={config.twitter}
-                  title="Twitter"
+                  href={config.linkedin}
+                  title="Linkedin"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Twitter />
+                  <img
+                    style={{"backgroundColor": "transparent"}}
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@4.13.0/icons/linkedin.svg"
+                    width="20"
+                    height="20"
+                  />
                 </a>
               )}
             </SocialLinks>
