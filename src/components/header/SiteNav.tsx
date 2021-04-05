@@ -121,11 +121,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNavState> {
                   title="Github"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    src={Github}
-                    width="20"
-                    height="20"
-                  />
+                  <img src={Github} width="20" height="20" />
                 </a>
               )}
               {config.linkedin && (
@@ -136,11 +132,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNavState> {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    src={LinkedIn}
-                    width="20"
-                    height="20"
-                  />
+                  <img src={LinkedIn} width="20" height="20" />
                 </a>
               )}
             </SocialLinks>
