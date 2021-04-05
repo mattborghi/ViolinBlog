@@ -10,6 +10,8 @@ import { SocialLink, SocialLinkFb } from '../../styles/shared';
 import config from '../../website-config';
 import { SubscribeModal } from '../subscribe/SubscribeModal';
 import { SiteNavLogo } from './SiteNavLogo';
+import Github from '../icons/github.svg';
+import LinkedIn from '../icons/linkedin.svg';
 
 interface SiteNavProps {
   isHome?: boolean;
@@ -120,7 +122,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNavState> {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src="https://cdn.jsdelivr.net/npm/simple-icons@4.13.0/icons/github.svg"
+                    src={Github}
                     width="20"
                     height="20"
                   />
@@ -135,8 +137,7 @@ class SiteNav extends React.Component<SiteNavProps, SiteNavState> {
                   rel="noopener noreferrer"
                 >
                   <img
-                    style={{"backgroundColor": "transparent"}}
-                    src="https://cdn.jsdelivr.net/npm/simple-icons@4.13.0/icons/linkedin.svg"
+                    src={LinkedIn}
                     width="20"
                     height="20"
                   />
