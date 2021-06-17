@@ -26,121 +26,6 @@ import {
 import config from '../website-config';
 import { PageContext } from './post';
 
-export interface IndexProps {
-  pageContext: {
-    currentPage: number;
-    numPages: number;
-  };
-  data: {
-    logo: {
-      childImageSharp: {
-        fixed: FixedObject;
-      };
-    };
-    header: {
-      childImageSharp: {
-        fixed: FixedObject;
-      };
-    };
-    allMarkdownRemark: {
-      edges: Array<{
-        node: PageContext;
-      }>;
-    };
-  };
-}
-
-const IndexPage: React.FC<IndexProps> = props => {
-  const { width, height } = props.data.header.childImageSharp.fixed;
-
-  return (
-    <IndexLayout css={HomePosts}>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>{config.title}</title>
-        <meta name="description" content={config.description} />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={config.title} />
-        <meta property="og:description" content={config.description} />
-        <meta property="og:url" content={config.siteUrl} />
-        <meta
-          property="og:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
-        />
-        {config.linkedin && <meta property="article:publisher" content={config.linkedin} />}
-        {config.googleSiteVerification && (
-          <meta name="google-site-verification" content={config.googleSiteVerification} />
-        )}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={config.title} />
-        <meta name="twitter:description" content={config.description} />
-        <meta name="twitter:url" content={config.siteUrl} />
-        <meta
-          name="twitter:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
-        />
-        {config.github && (
-          <meta
-            name="twitter:site"
-            content={`@${config.github.split('https://github.com/')[1]}`}
-          />
-        )}
-        <meta property="og:image:width" content={width.toString()} />
-        <meta property="og:image:height" content={height.toString()} />
-      </Helmet>
-      <Wrapper>
-        <div
-          css={[outer, SiteHeader, SiteHeaderStyles]}
-          className="site-header-background"
-          style={{
-            backgroundImage: `url('${props.data.header.childImageSharp.fixed.src}')`,
-          }}
-        >
-          <div css={inner}>
-            <SiteNav isHome />
-            <SiteHeaderContent className="site-header-content">
-              <SiteTitle className="site-title">
-                {props.data.logo
-                  ? // <img
-                    //   style={{ maxHeight: '55px' }}
-                    //   src={props.data.logo.childImageSharp.fixed.src}
-                    //   alt={config.title}
-                    // />
-                    config.title
-                  : config.title}
-              </SiteTitle>
-              <SiteDescription>{config.description}</SiteDescription>
-            </SiteHeaderContent>
-          </div>
-        </div>
-        <main id="site-main" css={[SiteMain, outer]}>
-          <div css={[inner, Posts]}>
-            <div css={[PostFeed]}>
-              {props.data.allMarkdownRemark.edges.map((post, index) => {
-                // filter out drafts in production
-                return (
-                  (post.node.frontmatter.draft !== true ||
-                    process.env.NODE_ENV !== 'production') && (
-                    <PostCard key={post.node.fields.slug} post={post.node} large={index === 0} />
-                  )
-                );
-              })}
-            </div>
-          </div>
-        </main>
-        {props.children}
-        {props.pageContext.numPages > 1 && (
-          <Pagination
-            currentPage={props.pageContext.currentPage}
-            numPages={props.pageContext.numPages}
-          />
-        )}
-        <Footer />
-      </Wrapper>
-    </IndexLayout>
-  );
-};
 
 export const pageQuery = graphql`
   query blogPageQuery($skip: Int!, $limit: Int!) {
@@ -266,5 +151,118 @@ const HomePosts = css`
     }
   }
 `;
+
+export interface IndexProps {
+  pageContext: {
+    currentPage: number;
+    numPages: number;
+  };
+  data: {
+    logo: {
+      childImageSharp: {
+        fixed: FixedObject;
+      };
+    };
+    header: {
+      childImageSharp: {
+        fixed: FixedObject;
+      };
+    };
+    allMarkdownRemark: {
+      edges: Array<{
+        node: PageContext;
+      }>;
+    };
+  };
+}
+
+const IndexPage: React.FC<IndexProps> = props => {
+  const { width, height } = props.data.header.childImageSharp.fixed;
+
+  return (
+    <IndexLayout css={HomePosts}>
+      <Helmet>
+        <html lang={config.lang} />
+        <title>{config.title}</title>
+        <meta name="description" content={config.description} />
+        <meta property="og:site_name" content={config.title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={config.title} />
+        <meta property="og:description" content={config.description} />
+        <meta property="og:url" content={config.siteUrl} />
+        <meta
+          property="og:image"
+          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
+        />
+        {config.linkedin && <meta property="article:publisher" content={config.linkedin} />}
+        {config.googleSiteVerification && (
+          <meta name="google-site-verification" content={config.googleSiteVerification} />
+        )}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={config.title} />
+        <meta name="twitter:description" content={config.description} />
+        <meta name="twitter:url" content={config.siteUrl} />
+        <meta
+          name="twitter:image"
+          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
+        />
+        {config.github && (
+          <meta name="twitter:site" content={`@${config.github.split('https://github.com/')[1]}`} />
+        )}
+        <meta property="og:image:width" content={width.toString()} />
+        <meta property="og:image:height" content={height.toString()} />
+      </Helmet>
+      <Wrapper>
+        <div
+          css={[outer, SiteHeader, SiteHeaderStyles]}
+          className="site-header-background"
+          style={{
+            backgroundImage: `url('${props.data.header.childImageSharp.fixed.src}')`,
+          }}
+        >
+          <div css={inner}>
+            <SiteNav isHome />
+            <SiteHeaderContent className="site-header-content">
+              <SiteTitle className="site-title">
+                {props.data.logo
+                  ? // <img
+                    //   style={{ maxHeight: '55px' }}
+                    //   src={props.data.logo.childImageSharp.fixed.src}
+                    //   alt={config.title}
+                    // />
+                    config.title
+                  : config.title}
+              </SiteTitle>
+              <SiteDescription>{config.description}</SiteDescription>
+            </SiteHeaderContent>
+          </div>
+        </div>
+        <main id="site-main" css={[SiteMain, outer]}>
+          <div css={[inner, Posts]}>
+            <div css={[PostFeed]}>
+              {props.data.allMarkdownRemark.edges.map((post, index) => {
+                // filter out drafts in production
+                return (
+                  (post.node.frontmatter.draft !== true ||
+                    process.env.NODE_ENV !== 'production') && (
+                    <PostCard key={post.node.fields.slug} post={post.node} large={index === 0} />
+                  )
+                );
+              })}
+            </div>
+          </div>
+        </main>
+        {props.children}
+        {props.pageContext.numPages > 1 && (
+          <Pagination
+            currentPage={props.pageContext.currentPage}
+            numPages={props.pageContext.numPages}
+          />
+        )}
+        <Footer />
+      </Wrapper>
+    </IndexLayout>
+  );
+};
 
 export default IndexPage;

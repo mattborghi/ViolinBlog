@@ -11,76 +11,6 @@ import { Author } from '../templates/post';
 import { AuthorProfileImage } from './PostCard';
 import styled from '@emotion/styled';
 
-interface AuthorListItemProps {
-  tooltip: 'small' | 'large';
-  author: Author;
-}
-
-export const AuthorListItem: React.FC<AuthorListItemProps> = props => {
-  const [hovered, setHover] = useState(false);
-  let timeout: ReturnType<typeof setTimeout>;
-  function handleMouseEnter() {
-    if (props.tooltip !== 'large') {
-      return;
-    }
-
-    clearTimeout(timeout);
-    setHover(true);
-  }
-
-  function handleMouseLeave() {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => setHover(false), 600);
-  }
-
-  return (
-    <AuthorListItemLi
-      className="author-list-item"
-      onMouseEnter={() => handleMouseEnter()}
-      onMouseLeave={() => handleMouseLeave()}
-    >
-      {props.tooltip === 'small' && (
-        <AuthorNameTooltip className="author-name-tooltip">{props.author.id}</AuthorNameTooltip>
-      )}
-      {props.tooltip === 'large' && (
-        <div css={[AuthorCardStyles, hovered && Hovered]} className="author-card">
-          {props.author.avatar.children.length && (
-            <Img
-              css={AuthorProfileImage}
-              className="author-profile-image"
-              fluid={props.author.avatar.children[0].fluid}
-              fadeIn={false}
-            />
-          )}
-          <div className="author-info">
-            <div className="bio">
-              <h2>{props.author.id}</h2>
-              <p>{props.author.bio}</p>
-              <p>
-                <Link to={`/author/${_.kebabCase(props.author.id)}/`}>More posts</Link> by{' '}
-                {props.author.id}.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-      <Link
-        css={AuthorAvatar}
-        className="author-avatar"
-        to={`/author/${_.kebabCase(props.author.id)}/`}
-      >
-        <Img
-          css={AuthorProfileImage}
-          className="author-profile-image"
-          fluid={props.author.avatar.children[0].fluid}
-          alt={props.author.id}
-          fadeIn={false}
-        />
-      </Link>
-    </AuthorListItemLi>
-  );
-};
-
 const Hovered = css`
   opacity: 1;
   transform: scale(1) translateY(0px);
@@ -233,3 +163,73 @@ const AuthorAvatar = css`
     border-color: ${lighten('0.02', colors.darkgrey)};
   }
 `;
+
+interface AuthorListItemProps {
+  tooltip: 'small' | 'large';
+  author: Author;
+}
+
+export const AuthorListItem: React.FC<AuthorListItemProps> = props => {
+  const [hovered, setHover] = useState(false);
+  let timeout: ReturnType<typeof setTimeout>;
+  function handleMouseEnter() {
+    if (props.tooltip !== 'large') {
+      return;
+    }
+
+    clearTimeout(timeout);
+    setHover(true);
+  }
+
+  function handleMouseLeave() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => setHover(false), 600);
+  }
+
+  return (
+    <AuthorListItemLi
+      className="author-list-item"
+      onMouseEnter={() => handleMouseEnter()}
+      onMouseLeave={() => handleMouseLeave()}
+    >
+      {props.tooltip === 'small' && (
+        <AuthorNameTooltip className="author-name-tooltip">{props.author.id}</AuthorNameTooltip>
+      )}
+      {props.tooltip === 'large' && (
+        <div css={[AuthorCardStyles, hovered && Hovered]} className="author-card">
+          {props.author.avatar.children.length && (
+            <Img
+              css={AuthorProfileImage}
+              className="author-profile-image"
+              fluid={props.author.avatar.children[0].fluid}
+              fadeIn={false}
+            />
+          )}
+          <div className="author-info">
+            <div className="bio">
+              <h2>{props.author.id}</h2>
+              <p>{props.author.bio}</p>
+              <p>
+                <Link to={`/author/${_.kebabCase(props.author.id)}/`}>More posts</Link> by{' '}
+                {props.author.id}.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+      <Link
+        css={AuthorAvatar}
+        className="author-avatar"
+        to={`/author/${_.kebabCase(props.author.id)}/`}
+      >
+        <Img
+          css={AuthorProfileImage}
+          className="author-profile-image"
+          fluid={props.author.avatar.children[0].fluid}
+          alt={props.author.id}
+          fadeIn={false}
+        />
+      </Link>
+    </AuthorListItemLi>
+  );
+};
