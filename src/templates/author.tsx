@@ -27,178 +27,6 @@ import { PageContext } from './post';
 import { Helmet } from 'react-helmet';
 import config from '../website-config';
 
-interface AuthorTemplateProps {
-  location: Location;
-  data: {
-    logo: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    allMarkdownRemark: {
-      totalCount: number;
-      edges: Array<{
-        node: PageContext;
-      }>;
-    };
-    authorYaml: {
-      id: string;
-      website?: string;
-      github?: string;
-      linkedin?: string;
-      location?: string;
-      profile_image?: {
-        childImageSharp: {
-          fluid: FluidObject;
-        };
-      };
-      bio?: string;
-      avatar: {
-        childImageSharp: {
-          fluid: FluidObject;
-        };
-      };
-    };
-  };
-}
-
-const Author = ({ data, location }: AuthorTemplateProps) => {
-  const author = data.authorYaml;
-
-  const edges = data.allMarkdownRemark.edges.filter(edge => {
-    const isDraft = edge.node.frontmatter.draft !== true || process.env.NODE_ENV === 'development';
-
-    let authorParticipated = false;
-    if (edge.node.frontmatter.author) {
-      edge.node.frontmatter.author.forEach(element => {
-        if (element.id === author.id) {
-          authorParticipated = true;
-        }
-      });
-    }
-
-    return isDraft && authorParticipated;
-  });
-  const totalCount = edges.length;
-
-  return (
-    <IndexLayout>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>
-          {author.id} - {config.title}
-        </title>
-        <meta name="description" content={author.bio} />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="profile" />
-        <meta property="og:title" content={`${author.id} - ${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + location.pathname} />
-        <meta property="article:publisher" content="https://www.facebook.com/ghost" />
-        <meta property="article:author" content="https://www.facebook.com/ghost" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={`${author.id} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + location.pathname} />
-        {config.github && (
-          <meta
-            name="twitter:site"
-            content={`@${config.github.split('https://github.com/')[1]}`}
-          />
-        )}
-        {config.github && (
-          <meta
-            name="twitter:creator"
-            content={`@${config.github.split('https://github.com/')[1]}`}
-          />
-        )}
-      </Helmet>
-      <Wrapper>
-        <header className="site-archive-header" css={[SiteHeader, SiteArchiveHeader]}>
-          <div css={[outer, SiteNavMain]}>
-            <div css={inner}>
-              <SiteNav isHome={false} />
-            </div>
-          </div>
-
-          <ResponsiveHeaderBackground
-            backgroundImage={author.profile_image?.childImageSharp.fluid.src}
-            css={[outer, SiteHeaderBackground]}
-            className="site-header-background"
-          >
-            <div css={inner}>
-              <SiteHeaderContent css={AuthorHeader} className="site-header-content author-header">
-                <img
-                  style={{ marginTop: '8px' }}
-                  css={[AuthorProfileImage, AuthorProfileBioImage]}
-                  src={data.authorYaml.avatar.childImageSharp.fluid.src}
-                  alt={author.id}
-                />
-                <AuthHeaderContent className="author-header-content">
-                  <SiteTitle className="site-title">{author.id}</SiteTitle>
-                  {author.bio && <AuthorBio className="author-bio">{author.bio}</AuthorBio>}
-                  <div css={AuthorMeta} className="author-meta">
-                    {author.location && (
-                      <div className="author-location" css={[HiddenMobile]}>
-                        {author.location}
-                      </div>
-                    )}
-                    <div className="author-stats" css={[HiddenMobile]}>
-                      {totalCount > 1 && `${totalCount} posts`}
-                      {totalCount === 1 && '1 post'}
-                      {totalCount === 0 && 'No posts'}
-                    </div>
-                    {author.website && (
-                      <AuthorSocialLink className="author-social-link">
-                        <AuthorSocialLinkAnchor
-                          href={author.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Website
-                        </AuthorSocialLinkAnchor>
-                      </AuthorSocialLink>
-                    )}
-                    {author.github && (
-                      <AuthorSocialLink className="author-social-link">
-                        <AuthorSocialLinkAnchor
-                          href={`https://github.com/${author.github}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Github
-                        </AuthorSocialLinkAnchor>
-                      </AuthorSocialLink>
-                    )}
-                    {author.linkedin && (
-                      <AuthorSocialLink className="author-social-link">
-                        <AuthorSocialLinkAnchor
-                          href={`https://www.linkedin.com/in/${author.linkedin}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Linkedin
-                        </AuthorSocialLinkAnchor>
-                      </AuthorSocialLink>
-                    )}
-                  </div>
-                </AuthHeaderContent>
-              </SiteHeaderContent>
-            </div>
-          </ResponsiveHeaderBackground>
-        </header>
-        <main id="site-main" css={[SiteMain, outer]}>
-          <div css={inner}>
-            <div css={[PostFeed]}>
-              {edges.map(({ node }) => {
-                return <PostCard key={node.fields.slug} post={node} />;
-              })}
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </Wrapper>
-    </IndexLayout>
-  );
-};
 
 export const pageQuery = graphql`
   query($author: String) {
@@ -374,5 +202,175 @@ const AuthorSocialLinkAnchor = styled.a`
     opacity: 1;
   }
 `;
+
+interface AuthorTemplateProps {
+  location: Location;
+  data: {
+    logo: {
+      childImageSharp: {
+        fluid: any;
+      };
+    };
+    allMarkdownRemark: {
+      totalCount: number;
+      edges: Array<{
+        node: PageContext;
+      }>;
+    };
+    authorYaml: {
+      id: string;
+      website?: string;
+      github?: string;
+      linkedin?: string;
+      location?: string;
+      profile_image?: {
+        childImageSharp: {
+          fluid: FluidObject;
+        };
+      };
+      bio?: string;
+      avatar: {
+        childImageSharp: {
+          fluid: FluidObject;
+        };
+      };
+    };
+  };
+}
+
+const Author = ({ data, location }: AuthorTemplateProps) => {
+  const author = data.authorYaml;
+
+  const edges = data.allMarkdownRemark.edges.filter(edge => {
+    const isDraft = edge.node.frontmatter.draft !== true || process.env.NODE_ENV === 'development';
+
+    let authorParticipated = false;
+    if (edge.node.frontmatter.author) {
+      edge.node.frontmatter.author.forEach(element => {
+        if (element.id === author.id) {
+          authorParticipated = true;
+        }
+      });
+    }
+
+    return isDraft && authorParticipated;
+  });
+  const totalCount = edges.length;
+
+  return (
+    <IndexLayout>
+      <Helmet>
+        <html lang={config.lang} />
+        <title>
+          {author.id} - {config.title}
+        </title>
+        <meta name="description" content={author.bio} />
+        <meta property="og:site_name" content={config.title} />
+        <meta property="og:type" content="profile" />
+        <meta property="og:title" content={`${author.id} - ${config.title}`} />
+        <meta property="og:url" content={config.siteUrl + location.pathname} />
+        <meta property="article:publisher" content="https://www.facebook.com/ghost" />
+        <meta property="article:author" content="https://www.facebook.com/ghost" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`${author.id} - ${config.title}`} />
+        <meta name="twitter:url" content={config.siteUrl + location.pathname} />
+        {config.github && (
+          <meta name="twitter:site" content={`@${config.github.split('https://github.com/')[1]}`} />
+        )}
+        {config.github && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.github.split('https://github.com/')[1]}`}
+          />
+        )}
+      </Helmet>
+      <Wrapper>
+        <header className="site-archive-header" css={[SiteHeader, SiteArchiveHeader]}>
+          <div css={[outer, SiteNavMain]}>
+            <div css={inner}>
+              <SiteNav isHome={false} />
+            </div>
+          </div>
+
+          <ResponsiveHeaderBackground
+            backgroundImage={author.profile_image?.childImageSharp.fluid.src}
+            css={[outer, SiteHeaderBackground]}
+            className="site-header-background"
+          >
+            <div css={inner}>
+              <SiteHeaderContent css={AuthorHeader} className="site-header-content author-header">
+                <img
+                  style={{ marginTop: '8px' }}
+                  css={[AuthorProfileImage, AuthorProfileBioImage]}
+                  src={data.authorYaml.avatar.childImageSharp.fluid.src}
+                  alt={author.id}
+                />
+                <AuthHeaderContent className="author-header-content">
+                  <SiteTitle className="site-title">{author.id}</SiteTitle>
+                  {author.bio && <AuthorBio className="author-bio">{author.bio}</AuthorBio>}
+                  <div css={AuthorMeta} className="author-meta">
+                    {author.location && (
+                      <div className="author-location" css={[HiddenMobile]}>
+                        {author.location}
+                      </div>
+                    )}
+                    <div className="author-stats" css={[HiddenMobile]}>
+                      {totalCount > 1 && `${totalCount} posts`}
+                      {totalCount === 1 && '1 post'}
+                      {totalCount === 0 && 'No posts'}
+                    </div>
+                    {author.website && (
+                      <AuthorSocialLink className="author-social-link">
+                        <AuthorSocialLinkAnchor
+                          href={author.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Website
+                        </AuthorSocialLinkAnchor>
+                      </AuthorSocialLink>
+                    )}
+                    {author.github && (
+                      <AuthorSocialLink className="author-social-link">
+                        <AuthorSocialLinkAnchor
+                          href={`https://github.com/${author.github}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Github
+                        </AuthorSocialLinkAnchor>
+                      </AuthorSocialLink>
+                    )}
+                    {author.linkedin && (
+                      <AuthorSocialLink className="author-social-link">
+                        <AuthorSocialLinkAnchor
+                          href={`https://www.linkedin.com/in/${author.linkedin}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Linkedin
+                        </AuthorSocialLinkAnchor>
+                      </AuthorSocialLink>
+                    )}
+                  </div>
+                </AuthHeaderContent>
+              </SiteHeaderContent>
+            </div>
+          </ResponsiveHeaderBackground>
+        </header>
+        <main id="site-main" css={[SiteMain, outer]}>
+          <div css={inner}>
+            <div css={[PostFeed]}>
+              {edges.map(({ node }) => {
+                return <PostCard key={node.fields.slug} post={node} />;
+              })}
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </Wrapper>
+    </IndexLayout>
+  );
+};
 
 export default Author;

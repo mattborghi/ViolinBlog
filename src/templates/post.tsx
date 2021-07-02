@@ -21,233 +21,6 @@ import { inner, outer, SiteMain } from '../styles/shared';
 import config from '../website-config';
 import { AuthorList } from '../components/AuthorList';
 
-export interface Author {
-  id: string;
-  bio: string;
-  avatar: {
-    children: Array<{
-      fluid: FluidObject;
-    }>;
-  };
-}
-
-interface PageTemplateProps {
-  location: Location;
-  data: {
-    logo: {
-      childImageSharp: {
-        fixed: any;
-      };
-    };
-    markdownRemark: {
-      html: string;
-      htmlAst: any;
-      excerpt: string;
-      timeToRead: string;
-      frontmatter: {
-        title: string;
-        date: string;
-        userDate: string;
-        image: {
-          childImageSharp: {
-            fluid: any;
-          };
-        };
-        excerpt: string;
-        tags: string[];
-        author: Author[];
-      };
-    };
-    relatedPosts: {
-      totalCount: number;
-      edges: Array<{
-        node: {
-          timeToRead: number;
-          frontmatter: {
-            title: string;
-            date: string;
-          };
-          fields: {
-            slug: string;
-          };
-        };
-      }>;
-    };
-  };
-  pageContext: {
-    prev: PageContext;
-    next: PageContext;
-  };
-}
-
-export interface PageContext {
-  excerpt: string;
-  timeToRead: number;
-  fields: {
-    slug: string;
-  };
-  frontmatter: {
-    image: {
-      childImageSharp: {
-        fluid: FluidObject;
-      };
-    };
-    excerpt: string;
-    title: string;
-    date: string;
-    draft?: boolean;
-    tags: string[];
-    author: Author[];
-  };
-}
-
-const PageTemplate = ({ data, pageContext, location }: PageTemplateProps) => {
-  const post = data.markdownRemark;
-  let width = '';
-  let height = '';
-  if (post.frontmatter.image?.childImageSharp) {
-    width = post.frontmatter.image.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
-    height = String(Number(width) / post.frontmatter.image.childImageSharp.fluid.aspectRatio);
-  }
-
-  const date = new Date(post.frontmatter.date);
-  // 2018-08-20
-  const datetime = format(date, 'yyyy-MM-dd');
-  // 20 AUG 2018
-  const displayDatetime = format(date, 'dd LLL yyyy');
-
-  return (
-    <IndexLayout className="post-template">
-      <Helmet>
-        <html lang={config.lang} />
-        <title>{post.frontmatter.title}</title>
-
-        <meta name="description" content={post.frontmatter.excerpt || post.excerpt} />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.frontmatter.title} />
-        <meta property="og:description" content={post.frontmatter.excerpt || post.excerpt} />
-        <meta property="og:url" content={config.siteUrl + location.pathname} />
-        {post.frontmatter.image?.childImageSharp && (
-          <meta
-            property="og:image"
-            content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`}
-          />
-        )}
-        <meta property="article:published_time" content={post.frontmatter.date} />
-        {/* not sure if modified time possible */}
-        {/* <meta property="article:modified_time" content="2018-08-20T15:12:00.000Z" /> */}
-        {post.frontmatter.tags &&
-          post.frontmatter.tags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
-
-        {config.linkedin && <meta property="article:publisher" content={config.linkedin} />}
-        {config.linkedin && <meta property="article:author" content={config.linkedin} />}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.frontmatter.title} />
-        <meta name="twitter:description" content={post.frontmatter.excerpt || post.excerpt} />
-        <meta name="twitter:url" content={config.siteUrl + location.pathname} />
-        {post.frontmatter.image?.childImageSharp && (
-          <meta
-            name="twitter:image"
-            content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`}
-          />
-        )}
-        <meta name="twitter:label1" content="Written by" />
-        <meta name="twitter:data1" content={post.frontmatter.author[0].id} />
-        <meta name="twitter:label2" content="Filed under" />
-        {post.frontmatter.tags && <meta name="twitter:data2" content={post.frontmatter.tags[0]} />}
-        {config.github && (
-          <meta
-            name="twitter:site"
-            content={`@${config.github.split('https://github.com/')[1]}`}
-          />
-        )}
-        {config.github && (
-          <meta
-            name="twitter:creator"
-            content={`@${config.github.split('https://github.com/')[1]}`}
-          />
-        )}
-        {width && <meta property="og:image:width" content={width} />}
-        {height && <meta property="og:image:height" content={height} />}
-      </Helmet>
-      <Wrapper css={PostTemplate}>
-        <header className="site-header">
-          <div css={[outer, SiteNavMain]}>
-            <div css={inner}>
-              <SiteNav isPost post={post.frontmatter} />
-            </div>
-          </div>
-        </header>
-        <main id="site-main" className="site-main" css={[SiteMain, outer]}>
-          <div css={inner}>
-            {/* TODO: no-image css tag? */}
-            <article css={[PostFull, !post.frontmatter.image && NoImage]}>
-              <PostFullHeader className="post-full-header">
-                <PostFullTags className="post-full-tags">
-                  {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
-                    post.frontmatter.tags.map(tag => <Link key={tag} to={`/tags/${_.kebabCase(tag)}/`} style={{"marginRight": 20}}>
-                      {tag}
-                    </Link>)
-                  )}
-                </PostFullTags>
-                <PostFullTitle className="post-full-title">{post.frontmatter.title}</PostFullTitle>
-                <PostFullCustomExcerpt className="post-full-custom-excerpt">
-                  {post.frontmatter.excerpt}
-                </PostFullCustomExcerpt>
-                <PostFullByline className="post-full-byline">
-                  <section className="post-full-byline-content">
-                    <AuthorList authors={post.frontmatter.author} tooltip="large" />
-                    <section className="post-full-byline-meta">
-                      <h4 className="author-name">
-                        {post.frontmatter.author.map(author => (
-                          <Link key={author.id} to={`/author/${_.kebabCase(author.id)}/`}>
-                            {author.id}
-                          </Link>
-                        ))}
-                      </h4>
-                      <div className="byline-meta-content">
-                        <time className="byline-meta-date" dateTime={datetime}>
-                          {displayDatetime}
-                        </time>
-                        <span className="byline-reading-time">
-                          <span className="bull">&bull;</span> {post.timeToRead} min read
-                        </span>
-                      </div>
-                    </section>
-                  </section>
-                </PostFullByline>
-              </PostFullHeader>
-
-              {post.frontmatter.image?.childImageSharp && (
-                <PostFullImage>
-                  <Img
-                    style={{ height: '100%' }}
-                    fluid={post.frontmatter.image.childImageSharp.fluid}
-                    alt={post.frontmatter.title}
-                  />
-                </PostFullImage>
-              )}
-              <PostContent htmlAst={post.htmlAst} />
-
-              {/* The big email subscribe modal content */}
-              {config.showSubscribe && <Subscribe title={config.title} />}
-            </article>
-          </div>
-        </main>
-
-        <ReadNext
-          currentPageSlug={location.pathname}
-          tags={post.frontmatter.tags}
-          relatedPosts={data.relatedPosts}
-          pageContext={pageContext}
-        />
-
-        <Footer />
-      </Wrapper>
-    </IndexLayout>
-  );
-};
 
 const PostTemplate = css`
   .site-main {
@@ -500,5 +273,232 @@ export const query = graphql`
     }
   }
 `;
+
+export interface Author {
+  id: string;
+  bio: string;
+  avatar: {
+    children: Array<{
+      fluid: FluidObject;
+    }>;
+  };
+}
+
+interface PageTemplateProps {
+  location: Location;
+  data: {
+    logo: {
+      childImageSharp: {
+        fixed: any;
+      };
+    };
+    markdownRemark: {
+      html: string;
+      htmlAst: any;
+      excerpt: string;
+      timeToRead: string;
+      frontmatter: {
+        title: string;
+        date: string;
+        userDate: string;
+        image: {
+          childImageSharp: {
+            fluid: any;
+          };
+        };
+        excerpt: string;
+        tags: string[];
+        author: Author[];
+      };
+    };
+    relatedPosts: {
+      totalCount: number;
+      edges: Array<{
+        node: {
+          timeToRead: number;
+          frontmatter: {
+            title: string;
+            date: string;
+          };
+          fields: {
+            slug: string;
+          };
+        };
+      }>;
+    };
+  };
+  pageContext: {
+    prev: PageContext;
+    next: PageContext;
+  };
+}
+
+export interface PageContext {
+  excerpt: string;
+  timeToRead: number;
+  fields: {
+    slug: string;
+  };
+  frontmatter: {
+    image: {
+      childImageSharp: {
+        fluid: FluidObject;
+      };
+    };
+    excerpt: string;
+    title: string;
+    date: string;
+    draft?: boolean;
+    tags: string[];
+    author: Author[];
+  };
+}
+
+const PageTemplate = ({ data, pageContext, location }: PageTemplateProps) => {
+  const post = data.markdownRemark;
+  let width = '';
+  let height = '';
+  if (post.frontmatter.image?.childImageSharp) {
+    width = post.frontmatter.image.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
+    height = String(Number(width) / post.frontmatter.image.childImageSharp.fluid.aspectRatio);
+  }
+
+  const date = new Date(post.frontmatter.date);
+  // 2018-08-20
+  const datetime = format(date, 'yyyy-MM-dd');
+  // 20 AUG 2018
+  const displayDatetime = format(date, 'dd LLL yyyy');
+
+  return (
+    <IndexLayout className="post-template">
+      <Helmet>
+        <html lang={config.lang} />
+        <title>{post.frontmatter.title}</title>
+
+        <meta name="description" content={post.frontmatter.excerpt || post.excerpt} />
+        <meta property="og:site_name" content={config.title} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.frontmatter.title} />
+        <meta property="og:description" content={post.frontmatter.excerpt || post.excerpt} />
+        <meta property="og:url" content={config.siteUrl + location.pathname} />
+        {post.frontmatter.image?.childImageSharp && (
+          <meta
+            property="og:image"
+            content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`}
+          />
+        )}
+        <meta property="article:published_time" content={post.frontmatter.date} />
+        {/* not sure if modified time possible */}
+        {/* <meta property="article:modified_time" content="2018-08-20T15:12:00.000Z" /> */}
+        {post.frontmatter.tags &&
+          post.frontmatter.tags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
+
+        {config.linkedin && <meta property="article:publisher" content={config.linkedin} />}
+        {config.linkedin && <meta property="article:author" content={config.linkedin} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.frontmatter.title} />
+        <meta name="twitter:description" content={post.frontmatter.excerpt || post.excerpt} />
+        <meta name="twitter:url" content={config.siteUrl + location.pathname} />
+        {post.frontmatter.image?.childImageSharp && (
+          <meta
+            name="twitter:image"
+            content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`}
+          />
+        )}
+        <meta name="twitter:label1" content="Written by" />
+        <meta name="twitter:data1" content={post.frontmatter.author[0].id} />
+        <meta name="twitter:label2" content="Filed under" />
+        {post.frontmatter.tags && <meta name="twitter:data2" content={post.frontmatter.tags[0]} />}
+        {config.github && (
+          <meta name="twitter:site" content={`@${config.github.split('https://github.com/')[1]}`} />
+        )}
+        {config.github && (
+          <meta
+            name="twitter:creator"
+            content={`@${config.github.split('https://github.com/')[1]}`}
+          />
+        )}
+        {width && <meta property="og:image:width" content={width} />}
+        {height && <meta property="og:image:height" content={height} />}
+      </Helmet>
+      <Wrapper css={PostTemplate}>
+        <header className="site-header">
+          <div css={[outer, SiteNavMain]}>
+            <div css={inner}>
+              <SiteNav isPost post={post.frontmatter} />
+            </div>
+          </div>
+        </header>
+        <main id="site-main" className="site-main" css={[SiteMain, outer]}>
+          <div css={inner}>
+            {/* TODO: no-image css tag? */}
+            <article css={[PostFull, !post.frontmatter.image && NoImage]}>
+              <PostFullHeader className="post-full-header">
+                <PostFullTags className="post-full-tags">
+                  {post.frontmatter.tags &&
+                    post.frontmatter.tags.length > 0 &&
+                    post.frontmatter.tags.map(tag => (
+                      <Link key={tag} to={`/tags/${_.kebabCase(tag)}/`} style={{ marginRight: 20 }}>
+                        {tag}
+                      </Link>
+                    ))}
+                </PostFullTags>
+                <PostFullTitle className="post-full-title">{post.frontmatter.title}</PostFullTitle>
+                <PostFullCustomExcerpt className="post-full-custom-excerpt">
+                  {post.frontmatter.excerpt}
+                </PostFullCustomExcerpt>
+                <PostFullByline className="post-full-byline">
+                  <section className="post-full-byline-content">
+                    <AuthorList authors={post.frontmatter.author} tooltip="large" />
+                    <section className="post-full-byline-meta">
+                      <h4 className="author-name">
+                        {post.frontmatter.author.map(author => (
+                          <Link key={author.id} to={`/author/${_.kebabCase(author.id)}/`}>
+                            {author.id}
+                          </Link>
+                        ))}
+                      </h4>
+                      <div className="byline-meta-content">
+                        <time className="byline-meta-date" dateTime={datetime}>
+                          {displayDatetime}
+                        </time>
+                        <span className="byline-reading-time">
+                          <span className="bull">&bull;</span> {post.timeToRead} min read
+                        </span>
+                      </div>
+                    </section>
+                  </section>
+                </PostFullByline>
+              </PostFullHeader>
+
+              {post.frontmatter.image?.childImageSharp && (
+                <PostFullImage>
+                  <Img
+                    style={{ height: '100%' }}
+                    fluid={post.frontmatter.image.childImageSharp.fluid}
+                    alt={post.frontmatter.title}
+                  />
+                </PostFullImage>
+              )}
+              <PostContent htmlAst={post.htmlAst} />
+
+              {/* The big email subscribe modal content */}
+              {config.showSubscribe && <Subscribe title={config.title} />}
+            </article>
+          </div>
+        </main>
+
+        <ReadNext
+          currentPageSlug={location.pathname}
+          tags={post.frontmatter.tags}
+          relatedPosts={data.relatedPosts}
+          pageContext={pageContext}
+        />
+
+        <Footer />
+      </Wrapper>
+    </IndexLayout>
+  );
+};
 
 export default PageTemplate;

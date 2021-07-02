@@ -19,12 +19,15 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "11.3.0",
+    "@styled-icons/fa-solid": "^10.34.0",
+    "algoliasearch": "^4.9.3",
     "cssnano": "5.0.6",
     "date-fns": "2.22.1",
     "emotion": "11.0.0",
     "emotion-server": "11.0.0",
     "gatsby": "3.7.2",
     "gatsby-image": "3.7.1",
+    "gatsby-plugin-algolia": "^0.20.1",
     "gatsby-plugin-canonical-urls": "3.7.1",
     "gatsby-plugin-emotion": "6.7.1",
     "gatsby-plugin-feed": "3.7.1",
@@ -57,6 +60,7 @@
     "react-dom": "17.0.2",
     "react-emotion": "10.0.0",
     "react-helmet": "6.1.0",
+    "react-instantsearch-dom": "^6.11.1",
     "rehype-react": "6.2.0"
   },
   "devDependencies": {
