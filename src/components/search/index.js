@@ -35,14 +35,15 @@ export default function Search({ indices }) {
             <StyledSearchRoot ref={rootRef}>
                 <InstantSearch
                     searchClient={searchClient}
-                    indexName="Pages" // indices[0].name
+                    indexName={indices[0].name}
                     onSearchStateChange={({ query }) => setQuery(query)}
                 >
-                    <StyledSearchBox onFocus={() => setFocus(true)} hasFocus={hasFocus} />
+                    <StyledSearchBox onFocus={() => setFocus(true)} hasFocus={hasFocus} theme={theme} />
 
                     <StyledSearchResult
                         show={query && query.length > 0 && hasFocus}
                         indices={indices}
+                        theme={theme}
                     />
                 </InstantSearch>
             </StyledSearchRoot>
