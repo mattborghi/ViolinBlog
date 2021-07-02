@@ -23,8 +23,6 @@
     "algoliasearch": "^4.9.3",
     "cssnano": "5.0.6",
     "date-fns": "2.22.1",
-    "emotion": "11.0.0",
-    "emotion-server": "11.0.0",
     "gatsby": "3.7.2",
     "gatsby-image": "3.7.1",
     "gatsby-plugin-algolia": "^0.20.1",
@@ -58,7 +56,6 @@
     "prismjs": "1.24.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-emotion": "10.0.0",
     "react-helmet": "6.1.0",
     "react-instantsearch-dom": "^6.11.1",
     "rehype-react": "6.2.0"
