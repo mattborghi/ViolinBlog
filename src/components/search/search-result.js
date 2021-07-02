@@ -11,9 +11,9 @@ import {
 
 const HitCount = connectStateResults(({ searchResults }) => {
     const hitCount = searchResults && searchResults.nbHits
-
     return hitCount > 0 ? (
         <div className="HitCount">
+            {/* Add an 's' if there are more than 1 result */}
             {hitCount} result{hitCount !== 1 ? `s` : ``}
         </div>
     ) : null
@@ -21,7 +21,6 @@ const HitCount = connectStateResults(({ searchResults }) => {
 
 const PageHit = ({ hit }) => (
     <div>
-        {/* {console.log("hit: ", hit)} */}
         <Link to={hit.slug}>
             <h4>
                 <Highlight attribute="title" hit={hit} tagName="mark" />
@@ -33,7 +32,6 @@ const PageHit = ({ hit }) => (
 
 const HitsInIndex = ({ index }) => (
     <Index indexName={index.name}>
-        {/* {console.log("index: ", index)} */}
         <HitCount />
         <Hits className="Hits" hitComponent={PageHit} />
     </Index>
