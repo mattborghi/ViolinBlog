@@ -38,7 +38,7 @@ const SiteNavStyles = css`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  overflow-y: hidden;
+  overflow-y: unset;
   height: 64px;
   font-size: 1.3rem;
 `;
