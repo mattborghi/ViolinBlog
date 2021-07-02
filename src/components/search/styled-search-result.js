@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import SearchResult from "./search-result"
 
-const Popover = css`
+const Popover = ({ theme }) => css`
   max-height: 80vh;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
@@ -16,11 +16,13 @@ const Popover = css`
   box-shadow: 0 0 5px 0;
   padding: 1em;
   border-radius: 2px;
-  background: ${({ theme }) => theme.background};
+  background: ${theme.background};
+  color: ${theme.foreground};
 `
 
+// export default SearchResult;
 export default styled(SearchResult)`
-  display: ${props => (props.show ? `block` : `none`)};
+  display: ${({ show }) => (show ? `block` : `none`)};
   ${Popover}
 
   .HitCount {
