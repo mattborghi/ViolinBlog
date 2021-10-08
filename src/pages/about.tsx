@@ -60,7 +60,7 @@ const About: React.FC = () => (
                   Thank you for visiting my blog!
                 </h5>
                 <h5>
-                If you want to see the source code please visit the <br /> GitHub repo: <a href="https://github.com/mattborghi/violin">mattborghi/violin</a>
+                If you want to see the source code of the website please visit the <br /> GitHub repo: <a href="https://github.com/mattborghi/violin">mattborghi/violin</a>
                 </h5>
                 <p>
                   Learning an instrument is not easy and learning the violin is really complicated.
@@ -68,13 +68,17 @@ const About: React.FC = () => (
                   real changes, you need to practice frequently and have patience.
                 </p>
                 <p>
-                  The main idea of writing this blog is to inspire myself and others (mainly adults like me)
-                  to keep improving or start learning this fantastic instrument.
+                  The main idea of writing this blog was to inspire myself and others (mainly adults like me)
+                  to keep improving or start learning this fantastic instrument. Watching yourself improve along the years
+                  is the best way to keep you motivated. Also I starting recording myself regularly 
+                  during the pandemics, around June 2020, in order to show my professor the advances during the week.
+                  For that reason, I thought that it would be a good idea to share my experiences with others.
                 </p>
                 <p>
-                  I self-taught violin when I was around 20 years old but I was studying at uni but I failed. I didn't have much time
-                  and I didn't feel motivated enough (I had no prior musical knowledge).
-                  So, after finishing my university studies I started going to classes with a professor 
+                  When I was around 20 years old, I tried learning violin by myself without previous music background 
+                  but I failed miserably. Since I was studying in uni, I didn't have much time
+                  and I didn't feel motivated enough.
+                  So, after finishing my university studies I started taking classes with a professor 
                   (at the <a href="https://ecmusica.com.ar/" title="ECM">Creative Music School</a> in Vicente Lopez, Buenos Aires, Argentina on July 2018 at 27 years old) 
                   and I think it was one of the best decisions I have ever made. 
                   Although there are some times that it is difficult to have a couple of minutes to practice or even the motivation
@@ -82,8 +86,8 @@ const About: React.FC = () => (
                   even if I wanted to go to sleep or make something else.  
                 </p>
                 <p>
-                  Finally, if you feel like writing me, just do it! I will answer you as soon as I can and try to make the same as I do to 
-                  see how much you have progressed since you started learning.
+                  Finally, if you feel like writing to me, just do it! I will answer you as soon as I can. 
+                  Anyways, try to make the same as I do to see how much you have progressed since you started learning. You will be surely surprised!
                 </p>
               </div>
             </PostFullContent>
